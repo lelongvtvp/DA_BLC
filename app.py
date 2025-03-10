@@ -2,6 +2,8 @@ from flask import Flask, request, jsonify, send_from_directory
 from blockchain import Blockchain
 from flask_socketio import SocketIO, emit
 from flask_cors import CORS
+from gevent import pywsgi
+from geventwebsocket.handler import WebSocketHandler
 import json
 import requests
 app = Flask(__name__)
@@ -44,5 +46,6 @@ def sync_blockchain(data):
     blockchain = data
     emit('blockchain_updated', blockchain, broadcast=True)
 
-if __name__ == '__main__':
-    socketIO.run(app, port=5000)
+if __name__ == "__main__":
+    server = pywsgi.WSGIServer(('0.0.0.0', 5000), app, handler_class=WebSocketHandler)
+    server.serve_forever()
