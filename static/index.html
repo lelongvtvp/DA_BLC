@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlockChain Explorer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>BlockChain Explorer</h1>
+    <button onclick="fetchBlockchain()">Xem BlockChain</button>
+    <button onclick="mineBlock()">Đào Block</button>
+
+    <h2>Gửi Giao Dịch</h2>
+    <input type="text" id="sender" placeholder="Người Gửi">
+    <input type="text" id="receiver" placeholder="Người Nhận">
+    <input type="number" id="amount" placeholder="Số Lượng">
+    <button onclick="senTransaction()">Gửi</button>
+    
+    <h2>BlockChain</h2>
+    <pre id="blockchainData"></pre>
+    
+    <script src="scripts.js"></script>
+</body>
+</html>
