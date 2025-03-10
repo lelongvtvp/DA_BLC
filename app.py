@@ -28,11 +28,15 @@ def new_transaction():
     return jsonify({"message": "Transaction added!", "pending_transactions": blockchain.pending_transactions})
 @app.route('/chain', methods = ['GET'])
 def get_chain():
-    blockchain_data = json.dumps([block.__dict__ for block in blockchain.chain], indent=4)
+  # Chuyển blockchain thành danh sách dictionary
+    chain_data = [block.__dict__ for block in blockchain]
 
+    # Lưu vào file blockchain.txt
     with open("blockchain.txt", "w") as file:
-        file.write(blockchain_data)
-    return jsonify({"message": "Blockchain saved to blockchain.txt"})
+        json.dump(chain_data, file, indent=4)
+
+    # Trả về dữ liệu để hiển thị trên web
+    return jsonify({"chain": chain_data, "length": len(chain_data)})
 @app.route('/register_node', methods=['POST'])
 def register_node():
     node_address = request.json['node']
