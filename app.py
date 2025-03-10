@@ -29,7 +29,7 @@ def new_transaction():
 @app.route('/chain', methods = ['GET'])
 def get_chain():
   # Chuyển blockchain thành danh sách dictionary
-    chain_data = [block.__dict__ for block in blockchain]
+    chain_data = [block.__dict__ for block in blockchain.chain]
 
     # Lưu vào file blockchain.txt
     with open("blockchain.txt", "w") as file:
