@@ -14,6 +14,8 @@ async function fetchBlockchain() {
         document.getElementById('blockchainData').textContent = "Không thể tải blockchain!";
     }
 }
+
+
 async function sendTransaction() {
     const sender = document.getElementById('sender').value.trim();
     const receiver = document.getElementById('receiver').value.trim();
@@ -57,6 +59,31 @@ async function mineBlock() {
         alert("Có lỗi xảy ra khi đào block!");
     }
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    const toggleButton = document.getElementById("toggleChain");
+    const blockchainDiv = document.getElementById("blockchainData");
+
+    toggleButton.addEventListener("click", function () {
+        if (blockchainDiv.style.display === "none") {
+            blockchainDiv.style.display = "block";
+            toggleButton.textContent = "Ẩn Blockchain";
+            fetchBlockchainData(); // Gọi API lấy dữ liệu blockchain
+        } else {
+            blockchainDiv.style.display = "none";
+            toggleButton.textContent = "Hiện Blockchain";
+        }
+    });
+
+    function fetchBlockchainData() {
+        fetch("/chain")
+            .then(response => response.json())
+            .then(data => {
+                blockchainDiv.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+            })
+            .catch(error => console.error("Lỗi khi lấy blockchain:", error));
+    }
+});
 
 // Tải blockchain khi mở trang
 document.addEventListener("DOMContentLoaded", fetchBlockchain);

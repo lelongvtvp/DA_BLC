@@ -37,6 +37,7 @@ def get_chain():
 
     # Trả về dữ liệu để hiển thị trên web
     return jsonify({"chain": chain_data, "length": len(chain_data)})
+
 @app.route('/register_node', methods=['POST'])
 def register_node():
     node_address = request.json['node']
