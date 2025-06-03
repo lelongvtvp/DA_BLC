@@ -84,6 +84,27 @@ document.addEventListener("DOMContentLoaded", function () {
             .catch(error => console.error("Lỗi khi lấy blockchain:", error));
     }
 });
+async function resetBlockchain() {
+    if (!confirm("Bạn có chắc chắn muốn reset blockchain? Hành động này không thể hoàn tác!")) {
+        return;
+    }
+
+    try {
+        const response = await fetch('/reset', {
+            method: 'POST'
+        });
+
+        if (response.ok) {
+            alert("Blockchain đã được reset!");
+            fetchBlockchain();  // Tải lại dữ liệu sau khi reset
+        } else {
+            alert("Reset thất bại!");
+        }
+    } catch (error) {
+        console.error("Lỗi khi reset blockchain:", error);
+        alert("Có lỗi xảy ra khi reset blockchain!");
+    }
+}
 
 // Tải blockchain khi mở trang
 document.addEventListener("DOMContentLoaded", fetchBlockchain);
