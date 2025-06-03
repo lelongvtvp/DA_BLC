@@ -50,7 +50,11 @@ def sync_blockchain(data):
     global blockchain
     blockchain = data
     emit('blockchain_updated', blockchain, broadcast=True)
-
+@app.route('/reset', methods=['POST'])
+def reset_blockchain():
+    global blockchain
+    blockchain = Blockchain()  # Khởi tạo lại với Genesis Block
+    return jsonify({"message": "Blockchain has been reset!"}), 200
 if __name__ == "__main__":
     server = pywsgi.WSGIServer(('0.0.0.0', 5000), app, handler_class=WebSocketHandler)
     server.serve_forever()
