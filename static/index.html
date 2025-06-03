@@ -1,26 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BlockChain Explorer</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BlockChain Explorer</title>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-    <h1>BlockChain Explorer</h1>
-    <button onclick="fetchBlockchain()">Xem BlockChain</button>
-    <button onclick="mineBlock()">Đào Block</button>
-    <button onclick="resetBlockchain()">Reset Blockchain</button>
-    <h2>Gửi Giao Dịch</h2>
-    <input type="text" id="sender" placeholder="Người Gửi">
-    <input type="text" id="receiver" placeholder="Người Nhận">
-    <input type="number" id="amount" placeholder="Số Lượng">
-    <button onclick="sendTransaction()">Gửi</button>
-    <h2>BlockChain</h2> 
-    <button id="toggleChain">Hiện Blockchain</button>
-    <div id="blockchainData" style="display: none;"></div>
-    <pre id="blockchainData"></pre>
-    
-    <script src="scripts.js"></script>
+  <div class="container">
+    <h1>🔗 BlockChain Explorer</h1>
+
+    <div class="actions">
+      <button onclick="fetchBlockchain()">Xem Blockchain</button>
+      <button onclick="mineBlock()">Đào Block</button>
+      <button onclick="resetBlockchain()">Reset Blockchain</button>
+    </div>
+
+    <h2>📤 Gửi Giao Dịch</h2>
+    <div class="form">
+      <input type="text" id="sender" placeholder="Người Gửi"/>
+      <input type="text" id="receiver" placeholder="Người Nhận"/>
+      <input type="number" id="amount" placeholder="Số Lượng"/>
+      <button onclick="sendTransaction()">Gửi</button>
+    </div>
+
+    <h2>📦 Blockchain</h2>
+    <button class="toggle-btn" id="toggleChain">Hiện Blockchain</button>
+    <div id="blockchainData" class="blockchain"></div>
+  </div>
+
+  <script src="scripts.js"></script>
 </body>
 </html>

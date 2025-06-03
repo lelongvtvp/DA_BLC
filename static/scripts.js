@@ -105,6 +105,14 @@ async function resetBlockchain() {
         alert("Có lỗi xảy ra khi reset blockchain!");
     }
 }
-
+document.getElementById("toggleChain").addEventListener("click", () => {
+    const blockchainDiv = document.getElementById("blockchainData");
+    const isVisible = blockchainDiv.style.display === "block";
+  
+    blockchainDiv.style.display = isVisible ? "none" : "block";
+  
+    if (!isVisible) blockchainDiv.classList.add("animated");
+  });
+  
 // Tải blockchain khi mở trang
 document.addEventListener("DOMContentLoaded", fetchBlockchain);
